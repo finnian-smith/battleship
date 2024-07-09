@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/finnian-smith/battleship#readme",
   "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "babel-jest": "^29.7.0",
     "jest": "^29.7.0"
   }
 }

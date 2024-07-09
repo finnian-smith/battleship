@@ -1,4 +1,4 @@
-const Ship = require("../src/Ship");
+import Ship from "../src/Ship";
 
 test("Ship created with correct length", () => {
   const ship = new Ship(3);
