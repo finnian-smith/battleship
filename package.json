@@ -1,0 +1,23 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "A game of Battleship",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/finnian-smith/battleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/finnian-smith/battleship/issues"
+  },
+  "homepage": "https://github.com/finnian-smith/battleship#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
