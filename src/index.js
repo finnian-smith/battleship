@@ -21,4 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
   ]);
 
   UI.renderGame(game, player1Board, player2Board);
+
+  // example attack event
+  player2Board.addEventListener("click", (event) => {
+    const index = Array.from(player2Board.children).indexOf(event.target);
+    const x = Math.floor(index / 10);
+    const y = index % 10;
+    game.currentPlayer.attack(game.player2.gameboard, [x, y]);
+    game.switchTurns();
+    UI.renderGame(game, player1Board, player2Board);
+    if (game.checkGameOver()) {
+      alert(`${game.currentPlayer.name} wins!`);
+    }
+  });
 });
