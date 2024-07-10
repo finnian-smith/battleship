@@ -1,4 +1,4 @@
-import Player from "./Player";
+import Player from "./Player.js";
 
 class Game {
   constructor(player1Name, player2Name) {

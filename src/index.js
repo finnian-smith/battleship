@@ -1,5 +1,6 @@
 import Game from "./Game.js";
-import { renderGame } from "./UI.js";
+import UI from "./UI.js";
+import Ship from "./Ship.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const player1Board = document.querySelector("#player1-board");
@@ -19,5 +20,5 @@ document.addEventListener("DOMContentLoaded", () => {
     [0, 2],
   ]);
 
-  renderGame(game, player1Board, player2Board);
+  UI.renderGame(game, player1Board, player2Board);
 });

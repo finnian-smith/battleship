@@ -1,5 +1,4 @@
-// implement ui module
-import Game from "./Game";
+import Game from "./Game.js";
 
 function renderBoard(board, element) {
   element.innerHTML = "";
