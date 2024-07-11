@@ -3,6 +3,7 @@ import Ship from "./Ship.js";
 class Gameboard {
   constructor() {
     this.board = [];
+    this.hitShots = [];
     this.missedShots = [];
   }
 
@@ -18,6 +19,7 @@ class Gameboard {
     );
     if (hitShip) {
       hitShip.ship.hit();
+      this.hitShots.push(coordinates);
     } else {
       this.missedShots.push(coordinates);
     }

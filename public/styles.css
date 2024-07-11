@@ -5,12 +5,49 @@
   padding: 0;
 }
 
-body {
+.app {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+}
+
+.header-section {
+  margin: 20px 0;
+}
+
+.header-text {
+  font-size: 2rem;
+}
+
+.board-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.player1-title,
+.player2-title {
+  font-size: 1rem;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 5px;
+}
+
+.player1-title {
+  background-color: #e91f47;
+}
+
+.player2-title {
+  background-color: #777993;
 }
 
 .board {
@@ -24,9 +61,94 @@ body {
   width: 30px;
   height: 30px;
   background-color: lightblue;
-  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-position: center;
+}
+
+.cell:not(.clicked):hover {
+  background-color: #dddddd;
 }
 
 .ship {
-  background-color: darkblue;
+  background-color: gray;
+}
+
+.hit {
+  background-image: url("./assets/images/hit.svg");
+}
+
+.miss {
+  background-image: url("./assets/images/miss.svg");
+}
+
+.divider {
+  background-color: #c3bfbf;
+  height: 1px;
+}
+
+@media screen and (min-width: 768px) {
+  .header-text {
+    font-size: 2.5rem;
+  }
+
+  .board-section {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .divider {
+    height: auto;
+    width: 1px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header-text {
+    font-size: 3rem;
+  }
+
+  .player1-title,
+  .player2-title {
+    font-size: 1.2rem;
+  }
+
+  .board-section {
+    gap: 50px;
+  }
+
+  .board {
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+  }
+
+  .cell {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header-text {
+    font-size: 4rem;
+  }
+
+  .player1-title,
+  .player2-title {
+    font-size: 1.5rem;
+  }
+
+  .board-section {
+    gap: 100px;
+  }
+
+  .board {
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+  }
+
+  .cell {
+    width: 50px;
+    height: 50px;
+  }
 }

@@ -8,8 +8,20 @@
   </head>
   <body>
     <div class="app">
-      <div id="player1-board" class="board"></div>
-      <div id="player2-board" class="board"></div>
+      <div class="header-section">
+        <h1 class="header-text">Battleship</h1>
+      </div>
+      <div class="board-section">
+        <div class="player">
+          <p class="player1-title">Player 1</p>
+          <div id="player1-board" class="board"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="player">
+          <p class="player2-title">Player 2</p>
+          <div id="player2-board" class="board"></div>
+        </div>
+      </div>
     </div>
     <script type="module" src="../src/index.js"></script>
   </body>
