@@ -1,7 +1,17 @@
 class Ship {
-  constructor(length) {
+  constructor(length, name, orientation) {
     this.length = length;
+    this.name = name;
+    this.orientation = orientation;
     this.hits = 0;
+  }
+
+  changeOrientation() {
+    if (this.orientation == "horizontal") {
+      this.orientation = "vertical";
+    } else {
+      this.orientation = "horizontal";
+    }
   }
 
   hit() {

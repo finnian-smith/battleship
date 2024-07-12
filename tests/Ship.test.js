@@ -5,6 +5,12 @@ test("Ship created with correct length", () => {
   expect(ship.length).toBe(3);
 });
 
+test("changeOrientation() changes orientation from horizontal to vertical", () => {
+  const ship = new Ship(3, "carrier", "horizontal");
+  ship.changeOrientation();
+  expect(ship.orientation).toBe("vertical");
+});
+
 test("hit() increases the hit count", () => {
   const ship = new Ship(3);
   ship.hit();
