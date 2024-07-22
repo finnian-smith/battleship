@@ -1,13 +1,18 @@
 import Ship from "./Ship.js";
 
+const customDragImage = new Image();
+customDragImage.src = "../public/assets/images/drop-marker.svg";
+
 function handleDragStart(event) {
   const name = event.target.getAttribute("name");
   const length = event.target.getAttribute("data-length");
-  const orientation = event.target.getAttribute("data-orientation");
+  const orientation = event.target.shipObject.orientation;
   event.dataTransfer.setData(
     "text/plain",
     JSON.stringify({ name, length, orientation })
   );
+
+  event.dataTransfer.setDragImage(customDragImage, 0, 0);
 }
 
 function handleDragOver(event) {

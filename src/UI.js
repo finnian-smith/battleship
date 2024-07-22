@@ -1,11 +1,37 @@
 import Game from "./Game.js";
 
+function flipBoats(ships) {
+  const shipsContainer = document.querySelector(".ships");
+
+  // Check current orientation and toggle
+  if (shipsContainer.classList.contains("horizontal")) {
+    shipsContainer.classList.remove("horizontal");
+    shipsContainer.classList.add("vertical");
+  } else {
+    shipsContainer.classList.remove("vertical");
+    shipsContainer.classList.add("horizontal");
+  }
+
+  ships.forEach((shipElement) => {
+    const shipObject = shipElement.shipObject;
+
+    shipObject.changeOrientation();
+
+    if (shipObject.orientation === "horizontal") {
+      shipElement.style.transform = "rotate(0deg)";
+    } else {
+      shipElement.style.transform = "rotate(90deg)";
+    }
+  });
+}
+
 function renderBoard(gameboard, element) {
   element.innerHTML = "";
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
+      cell.id = `cell-${i}-${j}`;
 
       const ship = gameboard.board.find((item) =>
         item.coordinates.some((coord) => coord[0] === i && coord[1] === j)
@@ -25,12 +51,10 @@ function renderBoard(gameboard, element) {
 
         // code below still needs tweaking for fitting image in cell
         cell.style.backgroundSize = "cover";
+        cell.style.backgroundPosition = `-${shipPartIndex * 100}% 0`;
 
-        // calculate background position based on orientation and ship part index
-        if (orientation === "horizontal") {
-          cell.style.backgroundPosition = `-${shipPartIndex * 100}% 0`;
-        } else {
-          cell.style.backgroundPosition = `0 -${shipPartIndex * 100}%`;
+        if (orientation !== "horizontal") {
+          cell.style.transform = "rotate(90deg)";
         }
       }
 
@@ -69,4 +93,4 @@ function renderGame(game, player1Board, player2Board) {
   }
 }
 
-export default { renderBoard, renderGame };
+export default { flipBoats, renderBoard, renderGame };

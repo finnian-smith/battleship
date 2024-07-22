@@ -7,22 +7,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const player1Board = document.querySelector("#player1-board");
   const player2Board = document.querySelector("#player2-board");
   const ships = document.querySelectorAll(".ship-marker");
+  const flipButton = document.querySelector(".flip-ships-button");
 
   const game = new Game("Player 1", "Player 2");
 
-  // example ship placement
-  //   game.player1.gameboard.placeShip(new Ship(3), [
-  //     [0, 0],
-  //     [0, 1],
-  //     [0, 2],
-  //   ]);
-  //   game.player2.gameboard.placeShip(new Ship(3), [
-  //     [0, 0],
-  //     [0, 1],
-  //     [0, 2],
-  //   ]);
+  // Create ship objects and store them in a Map
+  const shipObjects = new Map();
+  shipObjects.set("carrier", new Ship(5, "carrier", "horizontal"));
+  shipObjects.set("battleship", new Ship(4, "battleship", "horizontal"));
+  shipObjects.set("cruiser", new Ship(3, "cruiser", "horizontal"));
+  shipObjects.set("submarine", new Ship(3, "submarine", "horizontal"));
+  shipObjects.set("destroyer", new Ship(2, "destroyer", "horizontal"));
+
+  // attach the corresponding Ship object to each ship element
+  ships.forEach((shipElement) => {
+    const shipName = shipElement.getAttribute("name");
+    shipElement.shipObject = shipObjects.get(shipName);
+  });
 
   UI.renderGame(game, player1Board, player2Board);
+
+  // set up flip button
+  flipButton.addEventListener("click", () => UI.flipBoats(ships));
 
   // set up drag and drop for player 1
   ships.forEach((ship) => {

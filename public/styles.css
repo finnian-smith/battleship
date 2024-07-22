@@ -88,13 +88,40 @@
 
 .ship-section {
   display: flex;
-  border: 3px solid red;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.flip-ships-button {
+  padding: 10px;
+  background-color: orange;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.ships {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  width: 50%;
-  margin-top: 20px;
+  width: 80%;
+}
+
+.ships.horizontal {
+  flex-direction: row;
+}
+
+.ships.vertical {
+  justify-content: space-evenly;
+  gap: 0;
+  align-items: center;
+  height: 150px;
+  width: 90%;
 }
 
 .ship-marker {
@@ -102,6 +129,7 @@
   width: 100%;
   height: 100%;
   cursor: grab;
+  transition: transform 0.3s;
 }
 
 .carrier {
@@ -141,6 +169,10 @@
     height: auto;
     width: 1px;
   }
+
+  .ship-section {
+    width: 50%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -166,6 +198,27 @@
     width: 40px;
     height: 40px;
   }
+
+  .ships.vertical {
+    height: 200px;
+  }
+
+  .carrier {
+    width: calc(5 * 40px);
+  }
+
+  .battleship {
+    width: calc(4 * 40px);
+  }
+
+  .cruiser,
+  .submarine {
+    width: calc(3 * 40px);
+  }
+
+  .destroyer {
+    width: calc(2 * 40px);
+  }
 }
 
 @media screen and (min-width: 1440px) {
@@ -190,5 +243,26 @@
   .cell {
     width: 50px;
     height: 50px;
+  }
+
+  .ships.vertical {
+    height: 250px;
+  }
+
+  .carrier {
+    width: calc(5 * 50px);
+  }
+
+  .battleship {
+    width: calc(4 * 50px);
+  }
+
+  .cruiser,
+  .submarine {
+    width: calc(3 * 50px);
+  }
+
+  .destroyer {
+    width: calc(2 * 50px);
   }
 }
