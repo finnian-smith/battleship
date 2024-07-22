@@ -17,11 +17,8 @@ function flipBoats(ships) {
 
     shipObject.changeOrientation();
 
-    if (shipObject.orientation === "horizontal") {
-      shipElement.style.transform = "rotate(0deg)";
-    } else {
-      shipElement.style.transform = "rotate(90deg)";
-    }
+    shipElement.style.transform =
+      shipObject.orientation == "horizontal" ? "rotate(0deg)" : "rotate(90deg)";
   });
 }
 
@@ -43,7 +40,6 @@ function renderBoard(gameboard, element) {
         const shipPartIndex = ship.coordinates.findIndex(
           (coord) => coord[0] === i && coord[1] === j
         );
-        console.log(shipPartIndex);
         const orientation = ship.ship.orientation;
         const shipName = ship.ship.name;
 
@@ -53,7 +49,7 @@ function renderBoard(gameboard, element) {
         cell.style.backgroundSize = "cover";
         cell.style.backgroundPosition = `-${shipPartIndex * 100}% 0`;
 
-        if (orientation !== "horizontal") {
+        if (orientation != "horizontal") {
           cell.style.transform = "rotate(90deg)";
         }
       }

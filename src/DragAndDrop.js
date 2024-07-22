@@ -4,14 +4,15 @@ const customDragImage = new Image();
 customDragImage.src = "../public/assets/images/drop-marker.svg";
 
 function handleDragStart(event) {
-  const name = event.target.getAttribute("name");
-  const length = event.target.getAttribute("data-length");
-  const orientation = event.target.shipObject.orientation;
+  const shipElement = event.target;
+  const {
+    name,
+    shipObject: { length, orientation },
+  } = shipElement;
   event.dataTransfer.setData(
     "text/plain",
     JSON.stringify({ name, length, orientation })
   );
-
   event.dataTransfer.setDragImage(customDragImage, 0, 0);
 }
 
@@ -23,26 +24,18 @@ function handleDrop(event, gameboard, UI, player1Board) {
   event.preventDefault();
 
   const data = JSON.parse(event.dataTransfer.getData("text/plain"));
-  const name = data.name;
-  const length = parseInt(data.length);
-  const orientation = data.orientation;
+  const { name, length, orientation } = data;
 
-  // get target cell coordinates
   const cellIndex = Array.from(event.target.parentNode.children).indexOf(
     event.target
   );
   const x = Math.floor(cellIndex / 10);
   const y = cellIndex % 10;
 
-  // place the ship
   if (isValidPlacement(x, y, length, orientation, gameboard)) {
     const coordinates = [];
     for (let i = 0; i < length; i++) {
-      if (orientation === "horizontal") {
-        coordinates.push([x, y + i]);
-      } else {
-        coordinates.push([x + i, y]);
-      }
+      coordinates.push(orientation === "horizontal" ? [x, y + i] : [x + i, y]);
     }
     gameboard.placeShip(new Ship(length, name, orientation), coordinates);
 
@@ -52,7 +45,6 @@ function handleDrop(event, gameboard, UI, player1Board) {
       document.querySelector("#player2-board")
     );
 
-    // disable drag-and-drop and make ship opaque
     const shipMarker = document.querySelector(`.${name}`);
     if (shipMarker) {
       shipMarker.setAttribute("draggable", false);
@@ -65,24 +57,15 @@ function handleDrop(event, gameboard, UI, player1Board) {
 
 function isValidPlacement(x, y, length, orientation, gameboard) {
   for (let i = 0; i < length; i++) {
-    if (orientation === "horizontal") {
-      if (
-        y + i >= 10 ||
-        gameboard.board.some((item) =>
-          item.coordinates.some((coord) => coord[0] === x && coord[1] === y + i)
-        )
-      ) {
-        return false;
-      }
-    } else {
-      if (
-        x + i >= 10 ||
-        gameboard.board.some((item) =>
-          item.coordinates.some((coord) => coord[0] === x + i && coord[1] === y)
-        )
-      ) {
-        return false;
-      }
+    const [newX, newY] = orientation === "horizontal" ? [x, y + i] : [x + i, y];
+    if (
+      newX >= 10 ||
+      newY >= 10 ||
+      gameboard.board.some((item) =>
+        item.coordinates.some((coord) => coord[0] === newX && coord[1] === newY)
+      )
+    ) {
+      return false;
     }
   }
   return true;
