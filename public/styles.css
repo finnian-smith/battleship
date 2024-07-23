@@ -78,7 +78,7 @@
 }
 
 .miss {
-  background-image: url("./assets/images/miss.svg");
+  background-image: url("./assets/images/miss.svg") !important;
 }
 
 .divider {
@@ -125,7 +125,6 @@
 }
 
 .ship-marker {
-  /* height: 30px; */
   width: 100%;
   height: 100%;
   cursor: grab;

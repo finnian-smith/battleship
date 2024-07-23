@@ -11,6 +11,14 @@ class Gameboard {
     this.board.push({ ship, coordinates });
   }
 
+  isOccupied(coordinates) {
+    return this.board.some((item) =>
+      item.coordinates.some(
+        (coord) => coord[0] === coordinates[0] && coord[1] === coordinates[1]
+      )
+    );
+  }
+
   receiveAttack(coordinates) {
     const hitShip = this.board.find((item) =>
       item.coordinates.some(
