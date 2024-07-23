@@ -14,6 +14,19 @@ test("Gameboard can place a ship at specific coordinates", () => {
   expect(gameboard.board.length).toBe(1);
 });
 
+test("isOccupied() correctly determines if a cell is occupied", () => {
+  const gameboard = new Gameboard();
+  const ship = new Ship(3);
+
+  gameboard.placeShip(ship, [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+  ]);
+
+  expect(gameboard.isOccupied([0, 0])).toBe(true);
+});
+
 test("receiveAttack() correctly registers a hit", () => {
   const gameboard = new Gameboard();
   const ship = new Ship(3);
