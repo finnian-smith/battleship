@@ -1,4 +1,4 @@
-import Ship from "./Ship.js";
+import Ship from "../Ship.js";
 
 const customDragImage = new Image();
 customDragImage.src = "../public/assets/images/drop-marker.svg";
@@ -71,9 +71,4 @@ function isValidPlacement(x, y, length, orientation, gameboard) {
   return true;
 }
 
-export default {
-  handleDragStart,
-  handleDragOver,
-  handleDrop,
-  isValidPlacement,
-};
+export { handleDragStart, handleDragOver, handleDrop, isValidPlacement };
