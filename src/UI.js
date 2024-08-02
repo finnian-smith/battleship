@@ -1,9 +1,51 @@
-import Game from "./Game.js";
+// renders start view
+function renderStart(element, ships) {
+  // ship section
+  const shipSection = document.createElement("div");
+  shipSection.classList.add("ship-section");
+
+  // flip button
+  const flipButtonContainer = document.createElement("div");
+  flipButtonContainer.classList.add("flip-button");
+
+  const flipButton = document.createElement("button");
+  flipButton.classList.add("flip-ships-button");
+  flipButton.textContent = "Flip Ships";
+  shipSection.appendChild(flipButton);
+
+  const shipsContainer = document.createElement("div");
+  shipsContainer.classList.add("ships", "horizontal");
+
+  ships.forEach((ship) => {
+    const shipMarkerContainer = document.createElement("div");
+    shipMarkerContainer.classList.add("ship-marker-container");
+
+    const shipMarker = document.createElement("img");
+    shipMarker.setAttribute("src", `../public/assets/images/${ship.name}.svg`);
+    shipMarker.classList.add("ship-marker", `${ship.name}`);
+    shipMarker.setAttribute("name", `${ship.name}`);
+    shipMarker.setAttribute("draggable", "true");
+    shipMarker.setAttribute("data-length", `${ship.length}`);
+    shipMarker.setAttribute("data-orientation", "horizontal");
+
+    shipMarkerContainer.appendChild(shipMarker);
+    shipsContainer.appendChild(shipMarkerContainer);
+  });
+
+  shipSection.appendChild(shipsContainer);
+
+  const startButton = document.createElement("button");
+  startButton.classList.add("start-button");
+  startButton.textContent = "Start Game";
+  shipSection.appendChild(startButton);
+
+  element.appendChild(shipSection);
+}
 
 function flipBoats(ships) {
   const shipsContainer = document.querySelector(".ships");
 
-  // Check current orientation and toggle
+  // check current orientation and toggle
   if (shipsContainer.classList.contains("horizontal")) {
     shipsContainer.classList.remove("horizontal");
     shipsContainer.classList.add("vertical");
@@ -20,6 +62,12 @@ function flipBoats(ships) {
     shipElement.style.transform =
       shipObject.orientation == "horizontal" ? "rotate(0deg)" : "rotate(90deg)";
   });
+}
+
+function renderRightSection(element) {
+  element.innerHTML = "";
+  element.innerHTML = `<p class="player2-title">CPU</p>
+<div id="player2-board" class="board"></div>`;
 }
 
 function renderBoard(gameboard, element) {
@@ -75,11 +123,6 @@ function renderBoard(gameboard, element) {
   }
 }
 
-// function renderGame(game, player1Board, player2Board) {
-//   renderBoard(game.player1.gameboard, player1Board);
-//   renderBoard(game.player2.gameboard, player2Board);
-// }
-
 function renderGame(game, player1Board, player2Board) {
   if (game.player1 && game.player1.gameboard) {
     renderBoard(game.player1.gameboard, player1Board);
@@ -89,4 +132,10 @@ function renderGame(game, player1Board, player2Board) {
   }
 }
 
-export default { flipBoats, renderBoard, renderGame };
+export default {
+  renderStart,
+  flipBoats,
+  renderBoard,
+  renderRightSection,
+  renderGame,
+};

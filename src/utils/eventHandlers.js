@@ -1,34 +1,24 @@
-import {
-  handleDragStart,
-  handleDragOver,
-  handleDrop,
-  isValidPlacement,
-} from "./dragAndDrop.js";
+import { handleDragStart, handleDragOver, handleDrop } from "./dragAndDrop.js";
 import UI from "../UI.js";
 import { areAllShipsPlaced, placeComputerShips } from "./shipPlacement.js";
-import { handleClickAttack } from "./gameLogic.js"; // Import the function from gameLogic.js
+import { handleClickAttack } from "./gameLogic.js";
 
-function initialiseEventListeners({
+// initialise buttons events
+function initaliseButtonEvents(
   ships,
   flipButton,
-  player1Board,
-  player2Board,
-  game,
   startButton,
-}) {
+  game,
+  player1Board
+) {
   flipButton.addEventListener("click", () => UI.flipBoats(ships));
-
-  ships.forEach((ship) => {
-    ship.addEventListener("dragstart", handleDragStart);
-  });
-
-  player1Board.addEventListener("dragover", handleDragOver);
-  player1Board.addEventListener("drop", (event) => {
-    handleDrop(event, game.player1.gameboard, UI, player1Board);
-  });
 
   startButton.addEventListener("click", () => {
     if (areAllShipsPlaced(game.player1.gameboard)) {
+      const rightSection = document.querySelector(".right-section");
+      UI.renderRightSection(rightSection);
+      const player2Board = document.querySelector("#player2-board");
+      UI.renderBoard(game.player2.gameboard, player2Board);
       placeComputerShips(game.player2.gameboard, game);
       startGame({ player1Board, player2Board, game });
     } else {
@@ -37,10 +27,23 @@ function initialiseEventListeners({
   });
 }
 
+// initialise drag events
+function initialiseDragEvents({ ships, player1Board, game }) {
+  ships.forEach((ship) => {
+    ship.addEventListener("dragstart", handleDragStart);
+  });
+
+  player1Board.addEventListener("dragover", handleDragOver);
+  player1Board.addEventListener("drop", (event) => {
+    handleDrop(event, game.player1.gameboard, UI, player1Board);
+  });
+}
+
+// start game function
 function startGame({ player1Board, player2Board, game }) {
   player2Board.addEventListener("click", (event) => {
     handleClickAttack(event, game, player1Board, player2Board);
   });
 }
 
-export { initialiseEventListeners, startGame };
+export { initaliseButtonEvents, initialiseDragEvents };

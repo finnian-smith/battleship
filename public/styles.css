@@ -13,7 +13,7 @@
 }
 
 .header-section {
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 .header-text {
@@ -24,11 +24,16 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  /* added below */
+  width: 100%;
+  max-width: 1200px;
 }
 
-.player {
+.left-section,
+.right-section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 20px;
 }
@@ -36,7 +41,7 @@
 .player1-title,
 .player2-title {
   font-size: 1rem;
-  width: 100%;
+  width: 320px;
   text-align: center;
   padding: 10px 0;
   border-radius: 5px;
@@ -93,42 +98,58 @@
   justify-content: space-evenly;
   margin: 20px 0;
   gap: 10px;
+  width: 100%;
 }
 
-.flip-ships-button {
-  padding: 10px;
-  background-color: orange;
+.flip-ships-button,
+.start-button {
+  padding: 10px 30px;
+  width: 150px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
 }
 
+.flip-ships-button {
+  background-color: orange;
+}
+
+.start-button {
+  background-color: grey;
+}
+
 .ships {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  width: 80%;
+  width: 100%;
 }
 
 .ships.horizontal {
-  flex-direction: row;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .ships.vertical {
-  justify-content: space-evenly;
-  gap: 0;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0px;
+  margin: 80px 0;
+}
+
+.ship-marker-container {
+  position: relative;
+  display: flex;
   align-items: center;
-  height: 150px;
-  width: 90%;
+  justify-content: center;
+  width: 20%;
 }
 
 .ship-marker {
-  width: 100%;
-  height: 100%;
   cursor: grab;
   transition: transform 0.3s;
+  margin: 0;
+  height: 30px;
 }
 
 .carrier {
@@ -161,16 +182,17 @@
   .board-section {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 20px;
+  }
+
+  .left-section,
+  .right-section {
+    width: 50%;
   }
 
   .divider {
     height: auto;
     width: 1px;
-  }
-
-  .ship-section {
-    width: 50%;
   }
 }
 
@@ -182,10 +204,7 @@
   .player1-title,
   .player2-title {
     font-size: 1.2rem;
-  }
-
-  .board-section {
-    gap: 50px;
+    width: 418px;
   }
 
   .board {
@@ -198,8 +217,19 @@
     height: 40px;
   }
 
+  .flip-ships-button,
+  .start-button {
+    padding: 15px 30px;
+    width: 200px;
+    font-size: 1.2rem;
+  }
+
+  .ship-marker {
+    height: 40px;
+  }
+
   .ships.vertical {
-    height: 200px;
+    margin: 100px 0;
   }
 
   .carrier {
@@ -228,10 +258,7 @@
   .player1-title,
   .player2-title {
     font-size: 1.5rem;
-  }
-
-  .board-section {
-    gap: 100px;
+    width: 518px;
   }
 
   .board {
@@ -244,8 +271,17 @@
     height: 50px;
   }
 
+  .flip-ships-button,
+  .start-button {
+    padding: 20px 30px;
+  }
+
+  .ship-marker {
+    height: 50px;
+  }
+
   .ships.vertical {
-    height: 250px;
+    margin: 120px 0;
   }
 
   .carrier {
