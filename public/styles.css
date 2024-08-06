@@ -5,6 +5,28 @@
   padding: 0;
 }
 
+:root {
+  --default-background-color: #ffffff;
+  --main-font-family: "Bebas Neue", sans-serif;
+  --primary-text-color: #000000;
+  --secondary-text-color: #ffffff;
+  --player-1-background-color: #e91f47;
+  --player-2-background-color: #777993;
+  --cell-background-color: #b1def6;
+  --cell-background-color-hover: #dddddd;
+  --cell-ship-background-color: #bfbcc8;
+  --board-divider: #c3bfbf;
+  --flip-ships-button-background-color: #ffa500;
+  --flip-ships-button-background-color-hover: #e69500;
+  --start-game-button-background-color: #9293a0;
+  --start-game-button-background-color-hover: #7d7e8b;
+}
+
+html {
+  font-family: var(--main-font-family);
+  font-size: 16px;
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -17,14 +39,14 @@
 }
 
 .header-text {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  letter-spacing: 2px;
 }
 
 .board-section {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  /* added below */
   width: 100%;
   max-width: 1200px;
 }
@@ -40,7 +62,9 @@
 
 .player1-title,
 .player2-title {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: var(--secondary-text-color);
   width: 320px;
   text-align: center;
   padding: 10px 0;
@@ -48,11 +72,11 @@
 }
 
 .player1-title {
-  background-color: #e91f47;
+  background-color: var(--player-1-background-color);
 }
 
 .player2-title {
-  background-color: #777993;
+  background-color: var(--player-2-background-color);
 }
 
 .board {
@@ -65,17 +89,18 @@
 .cell {
   width: 30px;
   height: 30px;
-  background-color: lightblue;
+  background-color: var(--cell-background-color);
   border-radius: 5px;
   background-position: center;
 }
 
-.cell:not(.clicked):hover {
-  background-color: #dddddd;
+#player2-board .cell:not(.clicked):hover {
+  background-color: var(--cell-background-color-hover);
+  cursor: pointer;
 }
 
 .ship {
-  background-color: gray;
+  background-color: var(--cell-ship-background-color);
 }
 
 .hit {
@@ -87,7 +112,7 @@
 }
 
 .divider {
-  background-color: #c3bfbf;
+  background-color: var(--board-divider);
   height: 1px;
 }
 
@@ -108,14 +133,28 @@
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  font-family: var(--main-font-family);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .flip-ships-button {
-  background-color: orange;
+  background-color: var(--flip-ships-button-background-color);
+}
+
+.flip-ships-button:hover {
+  background-color: var(--flip-ships-button-background-color-hover);
+  color: var(--secondary-text-color);
 }
 
 .start-button {
-  background-color: grey;
+  background-color: var(--start-game-button-background-color);
+}
+
+.start-button:hover {
+  background-color: var(--start-game-button-background-color-hover);
+  color: var(--secondary-text-color);
 }
 
 .ships {
@@ -123,6 +162,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .ships.horizontal {
@@ -176,7 +216,7 @@
 
 @media screen and (min-width: 768px) {
   .header-text {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 
   .board-section {
@@ -198,12 +238,12 @@
 
 @media screen and (min-width: 1024px) {
   .header-text {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 
   .player1-title,
   .player2-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     width: 418px;
   }
 
@@ -252,12 +292,12 @@
 
 @media screen and (min-width: 1440px) {
   .header-text {
-    font-size: 4rem;
+    font-size: 5rem;
   }
 
   .player1-title,
   .player2-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     width: 518px;
   }
 
@@ -274,6 +314,7 @@
   .flip-ships-button,
   .start-button {
     padding: 20px 30px;
+    font-size: 1.5rem;
   }
 
   .ship-marker {

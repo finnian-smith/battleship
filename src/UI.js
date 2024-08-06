@@ -34,6 +34,7 @@ function renderStart(element, ships) {
 
   shipSection.appendChild(shipsContainer);
 
+  // start button
   const startButton = document.createElement("button");
   startButton.classList.add("start-button");
   startButton.textContent = "Start Game";
@@ -66,7 +67,7 @@ function flipBoats(ships) {
 
 function renderRightSection(element) {
   element.innerHTML = "";
-  element.innerHTML = `<p class="player2-title">CPU</p>
+  element.innerHTML = `<p class="player2-title">Opponent</p>
 <div id="player2-board" class="board"></div>`;
 }
 
@@ -93,7 +94,6 @@ function renderBoard(gameboard, element) {
 
         cell.style.backgroundImage = `url("../public/assets/images/${shipName}.svg")`;
 
-        // code below still needs tweaking for fitting image in cell
         cell.style.backgroundSize = "cover";
         cell.style.backgroundPosition = `-${shipPartIndex * 100}% 0`;
 
