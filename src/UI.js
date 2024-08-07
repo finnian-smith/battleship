@@ -74,6 +74,9 @@ function renderRightSection(element) {
 
 function renderBoard(gameboard, element) {
   element.innerHTML = "";
+
+  const isPlayerBoard = element.id == "player1-board";
+
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement("div");
@@ -85,7 +88,7 @@ function renderBoard(gameboard, element) {
       );
 
       // apply ship styling
-      if (ship) {
+      if (ship && isPlayerBoard) {
         cell.classList.add("ship");
         const shipPartIndex = ship.coordinates.findIndex(
           (coord) => coord[0] === i && coord[1] === j

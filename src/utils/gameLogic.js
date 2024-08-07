@@ -46,11 +46,11 @@ function handleClickAttack(event, game, player1Board, player2Board) {
     const validClick = handlePlayerAttack(game, x, y, event);
 
     if (validClick) {
+      UI.renderGame(game, player1Board, player2Board);
       if (game.checkGameOver()) {
         showGameOverModal(game.player1.name);
       } else {
         game.switchTurns();
-        UI.renderGame(game, player1Board, player2Board);
         setTimeout(() => computerTurn(game, player1Board, player2Board), 1000);
       }
     }
@@ -80,11 +80,12 @@ function computerTurn(game, player1Board, player2Board) {
     markCell({ target: player1BoardCells[randomIndex] }, false);
   }
 
+  UI.renderGame(game, player1Board, player2Board);
+
   if (game.checkGameOver()) {
     showGameOverModal(game.player2.name);
   } else {
     game.switchTurns();
-    UI.renderGame(game, player1Board, player2Board);
   }
 }
 
