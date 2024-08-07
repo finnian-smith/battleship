@@ -1,5 +1,3 @@
-import Ship from "./Ship.js";
-
 class Gameboard {
   constructor() {
     this.board = [];
@@ -35,6 +33,12 @@ class Gameboard {
 
   allShipsSunk() {
     return this.board.every((item) => item.ship.isSunk());
+  }
+
+  clear() {
+    this.board = [];
+    this.hitShots = [];
+    this.missedShots = [];
   }
 }
 

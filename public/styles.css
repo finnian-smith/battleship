@@ -20,6 +20,8 @@
   --flip-ships-button-background-color-hover: #e69500;
   --start-game-button-background-color: #9293a0;
   --start-game-button-background-color-hover: #7d7e8b;
+  --restart-game-button-background-color: #4caf50;
+  --restart-game-button-background-color-hover: #45a049;
 }
 
 html {
@@ -214,6 +216,59 @@ html {
   cursor: not-allowed;
 }
 
+.game-over-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  position: relative;
+  margin: 15% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  background-color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.game-over-message {
+  font-size: 2rem;
+}
+
+.restart-button {
+  margin-top: 20px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--restart-game-button-background-color);
+  color: var(--secondary-text-color);
+  font-family: var(--main-font-family);
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.restart-button:hover {
+  background-color: var(--restart-game-button-background-color-hover);
+}
+
 @media screen and (min-width: 768px) {
   .header-text {
     font-size: 3rem;
@@ -233,6 +288,10 @@ html {
   .divider {
     height: auto;
     width: 1px;
+  }
+
+  .game-over-message {
+    font-size: 2.5rem;
   }
 }
 
@@ -261,6 +320,10 @@ html {
   .start-button {
     padding: 15px 30px;
     width: 200px;
+    font-size: 1.2rem;
+  }
+
+  .restart-button {
     font-size: 1.2rem;
   }
 
@@ -312,7 +375,8 @@ html {
   }
 
   .flip-ships-button,
-  .start-button {
+  .start-button,
+  .restart-button {
     padding: 20px 30px;
     font-size: 1.5rem;
   }

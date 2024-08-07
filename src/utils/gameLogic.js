@@ -1,4 +1,5 @@
 import UI from "../UI.js";
+import startNewGame from "./gameInit.js";
 
 function getClickCoordinates(event, playerBoard) {
   const index = Array.from(playerBoard.children).indexOf(event.target);
@@ -46,7 +47,7 @@ function handleClickAttack(event, game, player1Board, player2Board) {
 
     if (validClick) {
       if (game.checkGameOver()) {
-        alert(`${game.player1.name} wins!`);
+        showGameOverModal(game.player1.name);
       } else {
         game.switchTurns();
         UI.renderGame(game, player1Board, player2Board);
@@ -80,11 +81,38 @@ function computerTurn(game, player1Board, player2Board) {
   }
 
   if (game.checkGameOver()) {
-    alert(`${game.player2.name} wins!`);
+    showGameOverModal(game.player2.name);
   } else {
     game.switchTurns();
     UI.renderGame(game, player1Board, player2Board);
   }
+}
+
+function showGameOverModal(player) {
+  const modal = document.querySelector(".game-over-modal");
+  const messageElement = document.querySelector(".game-over-message");
+  const closeButton = document.querySelector(".close-button");
+  const restartButton = document.querySelector(".restart-button");
+
+  messageElement.textContent = `${player} wins!`;
+  modal.style.display = "block";
+
+  closeButton.onclick = () => (modal.style.display = "none");
+
+  restartButton.onclick = () => {
+    modal.style.display = "none";
+    restartGame();
+  };
+
+  window.onclick = (event) => {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+}
+
+function restartGame() {
+  startNewGame();
 }
 
 export {

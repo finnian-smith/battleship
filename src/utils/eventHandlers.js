@@ -4,7 +4,7 @@ import { areAllShipsPlaced, placeComputerShips } from "./shipPlacement.js";
 import { handleClickAttack } from "./gameLogic.js";
 
 // initialise buttons events
-function initaliseButtonEvents(
+function initialiseButtonEvents(
   ships,
   flipButton,
   startButton,
@@ -39,6 +39,13 @@ function initialiseDragEvents({ ships, player1Board, game }) {
   });
 }
 
+// clear drag events
+function clearDragEvents(player1Board) {
+  const newPlayer1Board = player1Board.cloneNode(true);
+  player1Board.parentNode.replaceChild(newPlayer1Board, player1Board);
+  return newPlayer1Board;
+}
+
 // start game function
 function startGame({ player1Board, player2Board, game }) {
   player2Board.addEventListener("click", (event) => {
@@ -46,4 +53,4 @@ function startGame({ player1Board, player2Board, game }) {
   });
 }
 
-export { initaliseButtonEvents, initialiseDragEvents };
+export { initialiseButtonEvents, initialiseDragEvents, clearDragEvents };

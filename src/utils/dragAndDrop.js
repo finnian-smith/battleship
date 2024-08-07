@@ -26,6 +26,15 @@ function handleDrop(event, gameboard, UI, player1Board) {
   const data = JSON.parse(event.dataTransfer.getData("text/plain"));
   const { name, length, orientation } = data;
 
+  if (
+    !event.target ||
+    !event.target.parentNode ||
+    !event.target.parentNode.children
+  ) {
+    console.error("Invalid drop target:", event.target);
+    return;
+  }
+
   const cellIndex = Array.from(event.target.parentNode.children).indexOf(
     event.target
   );

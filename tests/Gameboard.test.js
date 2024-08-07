@@ -81,3 +81,23 @@ test("allShipsSunk() returns false if all ships are not sunk", () => {
 
   expect(gameboard.allShipsSunk()).toBe(false);
 });
+
+test("clear() clears the board, hitShots and missedShots", () => {
+  const gameboard = new Gameboard();
+  const ship = new Ship(3);
+
+  gameboard.placeShip(ship, [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+  ]);
+
+  gameboard.receiveAttack([0, 0]);
+  gameboard.receiveAttack([1, 0]);
+
+  gameboard.clear();
+
+  expect(gameboard.board.length).toBe(0);
+  expect(gameboard.hitShots.length).toBe(0);
+  expect(gameboard.missedShots.length).toBe(0);
+});

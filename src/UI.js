@@ -13,6 +13,7 @@ function renderStart(element, ships) {
   flipButton.textContent = "Flip Ships";
   shipSection.appendChild(flipButton);
 
+  // ships
   const shipsContainer = document.createElement("div");
   shipsContainer.classList.add("ships", "horizontal");
 
